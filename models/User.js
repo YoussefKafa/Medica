@@ -9,7 +9,7 @@ const userSchema=mongoose.Schema(
     mobileNumber:{type:String, require:true},
     gender:{type:Boolean, require:true},
     birthDay:{type:String, require:true},
-    image:{type:String, require:true},
+    image:{type:String},
     isAdmin:{type: Boolean, require:true},
     isDoctor:{type:Boolean, require:true},
     docSpecialization:{type:String, require:false},
