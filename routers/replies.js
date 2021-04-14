@@ -1,12 +1,11 @@
 const mongoose=require('mongoose')
 const express=require('express');
 const { Reply } = require('../models/Reply');
-const verifyToken = require('./VerifyToken');
 const router=express.Router();
 //findAll
 
 
-router.get('/findAll',verifyToken, (req,res)=>{
+router.get('/findAll', (req,res)=>{
     Reply.find().then(
         (replyList)=>{res.status(200).send(replyList)}
     ).catch((err)=> {res.status(404).send(err)});
@@ -15,7 +14,7 @@ router.get('/findAll',verifyToken, (req,res)=>{
     
     
     //findById
-    router.get('/findById/:id',verifyToken, (req,res)=>{
+    router.get('/findById/:id', (req,res)=>{
     let reply=Reply.findById(req.params.id).then((reply)=>{res.status(200).send(reply)}).catch((err)=>{
         res.status(404).send(err);
     })
@@ -23,19 +22,19 @@ router.get('/findAll',verifyToken, (req,res)=>{
     
     
     //deleteById
-    router.delete('/deleteById/:id',verifyToken,(req,res)=>{
+    router.delete('/deleteById/:id',(req,res)=>{
         Reply.findByIdAndDelete(req.params.id).then(
             res.status(200).json({message:'Reply has been deleted'})
         ).catch(  (err)=>{res.status(400).json({err})} )
     });
     
     //count
-    router.get('/count',verifyToken,(req,res)=>{
+    router.get('/count',(req,res)=>{
     Reply.countDocuments().then((replyCount)=>{res.status(200).json(replyCount)})
     .catch((err)=>{res.status(400).json(err)})
     });
     //save
-    router.post('/save',verifyToken,(req,res)=>
+    router.post('/save',(req,res)=>
     {
         let reply= new Reply({
             text:req.body.text,
