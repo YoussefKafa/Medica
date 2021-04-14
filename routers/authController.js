@@ -39,33 +39,22 @@ router.get('/logout', function(req, res) {
   res.status(200).send({ auth: false, token: null });
 });
 
-router.post('/register', function(req, res) {
-  let user= new User({
-    firstName:req.body.firstName,
-lastName:req.body.lastName,
-email:req.body.email,
-password:bcrypt.hashSync(req.body.password,10),
-mobileNumber:req.body.mobileNumber,
-gender:req.body.gender,
-birthDay:req.body.birthDay,
-image:req.body.image,
-isAdmin:req.body.isAdmin,
-isDoctor:req.body.isDoctor,
-article:req.body.article,
-question:req.body.question
-});
-user.save().then(res.status(200).send(user)).catch((err)=>{res.status(400).send(err)});
-},function (err, user) {
-if (err) return res.status(500).send("There was a problem registering the user`.");
-
-// if user is registered without errors
-// create a token
-var token = jwt.sign({ id: user._id }, config.secret, {
-  expiresIn: 86400 // expires in 24 hours
+router.post('/register',  (req,res)=>{
+  let user = new User({
+      name: req.body.name,
+      email: req.body.email,
+      passwordHash: bcrypt.hashSync(req.body.password, 10),
+      phone: req.body.phone,
+      isAdmin: req.body.isAdmin,
+      street: req.body.street,
+      apartment: req.body.apartment,
+      zip: req.body.zip,
+      city: req.body.city,
+      country: req.body.country,
+  })
+  user =  user.save().then(user => res.json(user)).catch(err=> res.json(err));
 });
 
-res.status(200).send({ auth: true, token: token });
-});
 
 router.get('/me', VerifyToken, function(req, res, next) {
 

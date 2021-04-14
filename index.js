@@ -10,6 +10,7 @@ const replyRouter=require('./routers/replies.js')
 const authController=require('./routers/authController')
 const PORT = process.env.PORT || 5000;
 //middleware
+index.use(bodyParser.urlencoded({ extended: true }))
 index.use(bodyParser.json());
 index.use('/api/user', userRouter);
 index.use('/api/article',articleRouter);
