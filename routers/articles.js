@@ -1,6 +1,7 @@
 const mongoose=require('mongoose');
 const express=require('express');
 const { Article } = require('../models/Article');
+const verifyToken = require('./VerifyToken');
 const router=express.Router();
 
 //findAll
@@ -21,7 +22,7 @@ router.get('/findAll', (req,res)=>{
     
     
     //deleteById
-    router.delete('/deleteById/:id',(req,res)=>{
+    router.delete('/deleteById/:id',verifyToken,(req,res)=>{
         Article.findByIdAndDelete(req.params.id).then(
             res.status(200).json({message:'article has been deleted'})
         ).catch(  (err)=>{res.status(400).json({err})} )
@@ -33,7 +34,7 @@ router.get('/findAll', (req,res)=>{
     .catch((err)=>{res.status(400).json(err)})
     });
     //save
-    router.post('/save',(req,res)=>
+    router.post('/save',verifyToken,(req,res)=>
     {
         let article= new Article({
             subject: req.body.subject,
@@ -52,7 +53,7 @@ router.get('/findAll', (req,res)=>{
     
     
     //deleteAll
-    router.delete('/deleteAll',(req,res)=>{
+    router.delete('/deleteAll',verifyToken,(req,res)=>{
         Article.remove({}).then(
           ()=>{
            res.status(201).json({status:true,message:'dll documents removed'});
