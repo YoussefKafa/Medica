@@ -63,4 +63,16 @@ router.get('/findAll',verifyToken, (req,res)=>{
           }
       )
       });
+
+
+      router.get('/incViews/:id',async (req,res)=>{
+        const articleG=await Article.findById(req.params.id);
+        if(articleG) {
+              articleG.views= articleG.views + 1;
+              articleG.save(articleG);
+            res.status(200).send(articleG);
+        }
+
+      });
+       
 module.exports=router;
