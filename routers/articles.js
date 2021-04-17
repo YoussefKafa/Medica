@@ -72,7 +72,9 @@ router.get('/findAll',verifyToken, (req,res)=>{
               articleG.save(articleG);
             res.status(200).send(articleG);
         }
-
+         if (!articleG){
+             res.status(404).json("not found");
+         }
       });
        
 module.exports=router;
