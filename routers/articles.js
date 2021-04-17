@@ -43,8 +43,7 @@ router.get('/findAll', (req,res)=>{
             views:req.body.views,
             author: req.body.author
         });
-    article.save().then(res.status(200).send(article)).catch((err)=>{res.status(400).send(err)});
-    }
+        article=  article.save().then(article => res.json(article)).catch(err=> res.json(err));}
     );
     
     
@@ -64,4 +63,18 @@ router.get('/findAll', (req,res)=>{
           }
       )
       });
+
+
+      router.get('/incViews/:id',async (req,res)=>{
+        const articleG=await Article.findById(req.params.id);
+        if(articleG) {
+              articleG.views= articleG.views + 1;
+              articleG.save(articleG);
+            res.status(200).send(articleG);
+        }
+         if (!articleG){
+             res.status(404).json("not found");
+         }
+      });
+       
 module.exports=router;
