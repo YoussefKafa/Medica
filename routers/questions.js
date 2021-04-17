@@ -6,7 +6,7 @@ const verifyToken = require('./VerifyToken.js');
 const router=express.Router();
 
 //findAll
-router.get('/findAll',verifyToken, (req,res)=>{
+router.get('/findAll', (req,res)=>{
     Question.find().then(
         (questionList)=>{res.status(200).send(questionList)}
     ).catch((err)=> {res.status(404).send(err)});
@@ -15,7 +15,7 @@ router.get('/findAll',verifyToken, (req,res)=>{
     
     
     //findById
-    router.get('/findById/:id',verifyToken, (req,res)=>{
+    router.get('/findById/:id', (req,res)=>{
     let question=Question.findById(req.params.id).then((question)=>{res.status(200).send(question)}).catch((err)=>{
         res.status(404).send(err);
     })
@@ -30,7 +30,7 @@ router.get('/findAll',verifyToken, (req,res)=>{
     });
     
     //count
-    router.get('/count',verifyToken,(req,res)=>{
+    router.get('/count',(req,res)=>{
     Question.countDocuments().then((questionCount)=>{res.status(200).json(questionCount)})
     .catch((err)=>{res.status(400).json(err)})
     });
