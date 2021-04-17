@@ -43,8 +43,7 @@ router.get('/findAll',verifyToken, (req,res)=>{
             views:req.body.views,
             author: req.body.author
         });
-    article.save().then(res.status(200).send(article)).catch((err)=>{res.status(400).send(err)});
-    }
+        article=  article.save().then(article => res.json(article)).catch(err=> res.json(err));}
     );
     
     
