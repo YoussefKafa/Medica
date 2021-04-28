@@ -1,6 +1,9 @@
 const mongoose =require('mongoose');
 
-
+/*
+building the Article Schema (using mongoose library),
+defining the article fields and relationships and constraints
+*/
 const articleSchema=new mongoose.Schema(
     {
           subject: {type:String, default: 'no title'},

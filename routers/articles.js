@@ -3,7 +3,7 @@ const express=require('express');
 const { Article } = require('../models/Article');
 const verifyToken = require('./VerifyToken');
 const router=express.Router();
-
+//building the article RESTApi
 //findAll
 router.get('/findAll',verifyToken, (req,res)=>{
     Article.find().then(
