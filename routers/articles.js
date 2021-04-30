@@ -76,5 +76,25 @@ router.get('/findAll', (req,res)=>{
              res.status(404).json("not found");
          }
       });
-       
+       // find a particular article and update its fields
+      router.put('/update/:id', (req,res)=>{
+       Article.findByIdAndUpdate(
+            req.params.id, 
+            {
+                subject: req.body.subject,
+                text : req.body.text,
+                date: req.body.date
+            },
+            {new: true})
+        .then(
+            (article)=>{
+                res.status(201).json({status:true,message:'updated'});
+               }
+        )
+        .catch(
+            (err)=>{
+                res.status(500).json({error:err,status:false})
+               }
+        );
+        });
 module.exports=router;

@@ -2,16 +2,16 @@ const mongoose=require('mongoose');
 
 const userSchema=mongoose.Schema(
 {
-    firstName:{type:String, required:true},
-    lastName:{type:String,  required:true},
-    email:{type:String, required:true},
-    password:{type:String, required:true},
-    mobileNumber:{type:String, required:true},
-    gender:{type:Boolean, required:true},
-    birthDay:{type:String, required:true},
+    firstName:{type:String, required:false},
+    lastName:{type:String,  required:false},
+    email:{type:String, required:false},
+    password:{type:String, required:false},
+    mobileNumber:{type:String, required:false},
+    gender:{type:Boolean, required:false},
+    birthDay:{type:String, required:false},
     image:{type:String},
-    isAdmin:{type: Boolean, required:true},
-    isDoctor:{type:Boolean, required:true},
+    isAdmin:{type: Boolean, required:false},
+    isDoctor:{type:Boolean, required:false},
     docSpecialization:{type:String, required:false},
     article:{type:mongoose.Schema.Types.ObjectId,ref:'Article'},
     question:{type:mongoose.Schema.Types.ObjectId,ref:'Question'}

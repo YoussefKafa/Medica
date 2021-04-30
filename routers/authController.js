@@ -41,16 +41,16 @@ router.get('/logout', function(req, res) {
 
 router.post('/register',  (req,res)=>{
   let user = new User({
-      name: req.body.name,
-      email: req.body.email,
-      passwordHash: bcrypt.hashSync(req.body.password, 10),
-      phone: req.body.phone,
-      isAdmin: req.body.isAdmin,
-      street: req.body.street,
-      apartment: req.body.apartment,
-      zip: req.body.zip,
-      city: req.body.city,
-      country: req.body.country,
+     firstName: req.body.firstName,
+     lastName:req.body.lastName,
+     email:req.body.email,
+     password:req.body.password,
+     mobileNumber:req.body.mobileNumber,
+     gender:req.body.gender,
+     birthDay:req.body.birthDay,
+     image:req.body.image,
+     isAdmin:req.body.isAdmin,
+     isDoctor:req.body.isDoctor
   })
   user =  user.save().then(user => res.json(user)).catch(err=> res.json(err));
 });

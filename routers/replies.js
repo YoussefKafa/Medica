@@ -64,5 +64,23 @@ router.get('/findAll', (req,res)=>{
           }
       )
       });
-
+      router.put('/update/:id', (req,res)=>{
+        Reply.findByIdAndUpdate(
+             req.params.id, 
+             {
+                 text : req.body.text,
+                 date: req.body.date
+             },
+             {new: true})
+         .then(
+             (reply)=>{
+                 res.status(201).json({status:true,message:'updated'});
+                }
+         )
+         .catch(
+             (err)=>{
+                 res.status(500).json({error:err,status:false})
+                }
+         );
+         });
 module.exports=router;

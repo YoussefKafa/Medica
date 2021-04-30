@@ -66,5 +66,25 @@ router.get('/findAll', (req,res)=>{
           }
       )
       });
-
+      router.put('/update/:id', (req,res)=>{
+        Question.findByIdAndUpdate(
+             req.params.id, 
+             {
+                 subject: req.body.subject,
+                 text : req.body.text,
+                 date: req.body.date,
+    image:req.body.image,
+             },
+             {new: true})
+         .then(
+             (question)=>{
+                 res.status(201).json({status:true,message:'updated'});
+                }
+         )
+         .catch(
+             (err)=>{
+                 res.status(500).json({error:err,status:false})
+                }
+         );
+         });
 module.exports=router;

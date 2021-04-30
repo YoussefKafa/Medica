@@ -47,8 +47,31 @@ router.delete('/deleteAll',verifyToken,(req,res)=>{
   )
   });
 
-
-
+  router.put('/update/:id', (req,res)=>{
+    User.findByIdAndUpdate(
+         req.params.id, 
+         {
+            firstName:req.body.firstName,
+            lastName:req.body.lastName,
+            email:req.body.email,
+            password:bcrypt.hashSync(req.body.password, 10),
+            mobileNumber:req.body.mobileNumber,
+            gender:req.body.gender,
+            birthDay:req.body.birthDay,
+            image:req.body.image
+         },
+         {new: true})
+     .then(
+         (reply)=>{
+             res.status(201).json({status:true,message:'updated'});
+            }
+     )
+     .catch(
+         (err)=>{
+             res.status(500).json({error:err,status:false})
+            }
+     );
+     });
 
 
 module.exports=router;
