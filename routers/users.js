@@ -2,7 +2,7 @@ const express=require('express');
 const {User}=require('../models/User');
 const router=express.Router();
 const bcrypt=require('bcryptjs');
-const verifyToken = require('./VerifyToken');
+const verifyToken = require('../routers/verifyToken');
 
 //findAll
 router.get('/findAll',verifyToken, (req,res)=>{
