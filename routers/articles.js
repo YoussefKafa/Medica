@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const express=require('express');
 const { Article } = require('../models/Article');
-const verifyToken = require('./VerifyToken');
+const verifyToken = require('../routers/verifyToken');
 const router=express.Router();
 
 //findAll
