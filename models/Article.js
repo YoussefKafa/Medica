@@ -7,7 +7,7 @@ const articleSchema=new mongoose.Schema(
           text : {type:String, default: 'text'},
           date: {type:String},
           views: {type: Number},
-          author: {type:mongoose.Schema.Types.ObjectId,ref:'User'}
+          authorId: {type:String}
     }
 );
 articleSchema.virtual('id').get(function () {
