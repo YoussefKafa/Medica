@@ -12,7 +12,9 @@ const userSchema=mongoose.Schema(
     image:{type:String},
     isAdmin:{type: Boolean, required:false},
     isDoctor:{type:Boolean, required:false},
-    docSpecialization:{type:String, required:false}
+    docSpecialization:{type:String, required:false},
+    article:{type:mongoose.Schema.Types.ObjectId,ref:'Article'},
+    question:{type:mongoose.Schema.Types.ObjectId,ref:'Question'}
 }
 );
 userSchema.virtual('id').get(function () {
