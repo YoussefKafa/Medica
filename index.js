@@ -18,7 +18,7 @@ index.use('/api/question',questionRouter);
 index.use('/api/reply',replyRouter);
 index.use('/auth', authController);
 //databaseconnection
-mongoose.connect(process.env.databaseConnectionString ,{ useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify:false, dbName:'libApp-database' } )
+mongoose.connect("mongodb+srv://youssefkafaa:123kafa123@cluster0.ni7ks.mongodb.net/libApp-database?retryWrites=true&w=majority" ,{ useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify:false, dbName:'libApp-database' } )
 .then(()=>{
 console.log("mongodb is connected");
 }).catch(
