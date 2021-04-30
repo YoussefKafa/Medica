@@ -44,7 +44,7 @@ router.post('/register',  (req,res)=>{
      firstName: req.body.firstName,
      lastName:req.body.lastName,
      email:req.body.email,
-     password:bcrypt.hash(req.body.password),
+     password:bcrypt.hashSync(req.body.password,10),
      mobileNumber:req.body.mobileNumber,
      gender:req.body.gender,
      birthDay:req.body.birthDay,
