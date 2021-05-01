@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 //middleware
 index.use(bodyParser.urlencoded({ extended: true }))
 index.use(bodyParser.json());
+index.use(cors());
 index.use('/api/user', userRouter);
 index.use('/api/article',articleRouter);
 index.use('/api/question',questionRouter);
