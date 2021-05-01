@@ -87,4 +87,15 @@ router.get('/findAll', (req,res)=>{
                 }
          );
          });
+         router.get('/incViews/:id',async (req,res)=>{
+            const questionG=await Question.findById(req.params.id);
+            if(questionG) {
+                questionG.views= questionG.views + 1;
+                questionG.save(questionG);
+                res.status(200).send(questionG);
+            }
+             if (!questionG){
+                 res.status(404).json("not found");
+             }
+          });
 module.exports=router;
