@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser=require('body-parser');
 const index=express();
 require('dotenv/config');
-require(cors());
+const cors=require('Cors');
 const mongoose=require('mongoose');
 const userRouter=require('./routers/users.js')
 const articleRouter=require('./routers/articles.js')
